@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log in page</title>
+    <link rel="stylesheet" href="popup.css">
+    <script src="login.js" defer></script>
+</head>
+<body>
+    <section>
+
+        <div class="login-container">
+            <h2 class="login-title">Feedback Form</h2>
+            <form id="signUpForm" onsubmit="event.preventDefault(); signUp(signupUsername.value, signupPassword.value);">
+                <p>Name</p> <br> <input type="name" placeholder="Enter your Name" id="signupUsername" required class="signUp-input">
+               <p>Email</p> <br> <input type="email" placeholder="Enter your Email" required class="signUp-input">
+               <p>Message </p><br> <div class="password-wrapper">
+  <textarea id="review" name="w3review" rows="4" cols="50">
+  </textarea>
+  </div>
+               <br> <button type="submit" id="btn">Submit</button>
+              
+  
+</form>
+
+        
+        
+        </div>
+    </section>
+</body>
+</html>

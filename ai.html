@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Resume Builder</title>
+  <link rel="stylesheet" href="ai.css">
+</head>
+<body>
+  <div class="ai-container">
+    <h2>AI Resume Builder</h2>
+    <p id="ai-instruction">
+     Please provide your full name:
+    </p>
+    <form id="ai-form">
+      <input type="text" id="ai-input" required placeholder="Enter your full name">
+      <button type="submit">Next</button>
+    </form>
+    <div id="ai-summary"></div>
+  </div>
+  <script>
+    // Simple step-by-step AI form logic
+    const steps = [
+      { label: "Please provide your full name:", key: "Full Name", placeholder: "Enter your full name" },
+      { label: "Please provide your email:", key: "Email", placeholder: "Enter your email" },
+      { label: "Please provide your phone number:", key: "Phone Number", placeholder: "Enter your phone number" },
+      { label: "Please provide your LinkedIn or GitHub:", key: "LinkedIn/GitHub", placeholder: "Enter your LinkedIn or GitHub" },
+   { label: "Now let's move to Work experience. Please provide your Company name:", key: "Company name" },
+     { label: " Please provide your Job Title:", key: "Job Title" },
+     { label: " Please provide your dates of Employment:", key: "Date of Employment" },
+    { label: " Please provide your accomplishments:", key: "accomplishments" },
+    { label: " Please provide your achievements:", key: "Quantifiable achievements" },
+    { label: " Please provide your education (Certificates can be included):", key: "Education" },
+    { label: " Please provide your date of Graduation:", key: "graduation date" },
+    { label: " Please provide your relevant coursework,GPA:", key: "Relevant coursework" },
+    { label: " Please provide your dates of Employment:", key: "Date of Employment" },
+
+
+
+];
+    let currentStep = 0;
+    const userData = {};
+
+    const instruction = document.getElementById('ai-instruction');
+    const form = document.getElementById('ai-form');
+    const input = document.getElementById('ai-input');
+    const summary = document.getElementById('ai-summary');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const value = input.value.trim();
+      if (!value) return;
+      userData[steps[currentStep].key] = value;
+      currentStep++;
+      if (currentStep < steps.length) {
+        instruction.textContent = steps[currentStep].label;
+        input.value = '';
+        input.placeholder = steps[currentStep].placeholder;
+      } else {
+        form.style.display = 'none';
+        instruction.textContent = "Thank you! Here is your provided information:";
+        summary.innerHTML = Object.entries(userData).map(([k, v]) => `<p><strong>${k}:</strong> ${v}</p>`).join('');
+      }
+    });
+  </script>
+</body>
+</html>

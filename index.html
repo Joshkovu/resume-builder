@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Builder</title>
+    <link rel="stylesheet" href="index.css">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="index.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.7.0/mammoth.browser.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script>
+// ...existing code...
+document.getElementById('resumeUpload').addEventListener('change', async function(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+
+  const suggestionsDiv = document.getElementById('resumeSuggestions');
+  suggestionsDiv.innerHTML = "Scanning your resume...";
+
+  if (file.type === "application/pdf") {
+    // PDF extraction (as before)
+    const reader = new FileReader();
+    reader.onload = async function() {
+      const typedarray = new Uint8Array(this.result);
+      const pdf = await pdfjsLib.getDocument(typedarray).promise;
+      let text = '';
+      for (let i = 1; i <= pdf.numPages; i++) {
+        const page = await pdf.getPage(i);
+        const content = await page.getTextContent();
+        text += content.items.map(item => item.str).join(' ') + '\n';
+      }
+      getAISuggestions(text, suggestionsDiv);
+    };
+    reader.readAsArrayBuffer(file);
+  } else if (
+    file.type === "application/vnd.openxmlformats-officedocument.wordprocessingml.document" ||
+    file.name.endsWith('.docx')
+  ) {
+    // DOCX extraction using mammoth.js
+    const reader = new FileReader();
+    reader.onload = async function(event) {
+      const arrayBuffer = event.target.result;
+      mammoth.extractRawText({arrayBuffer: arrayBuffer})
+        .then(function(result){
+          getAISuggestions(result.value, suggestionsDiv);
+        })
+        .catch(function(err){
+          suggestionsDiv.innerHTML = "Error reading DOCX file.";
+        });
+    };
+    reader.readAsArrayBuffer(file);
+  } else {
+    suggestionsDiv.innerHTML = "Please upload a PDF or DOCX resume.";
+  }
+});
+
+</script>
+</head>
+<body>
+    <nav>
+        <div>
+            <img src="logo.jpeg" alt="" class="container-logo">
+            <h1 class="logo-container-description">Resume Builder</h1>
+        </div>
+        <div>
+            <ul>
+                <li>Home</li>
+                <a href="feedback.html"><li>Feedback</li></a>                <li>Contact</li>
+               <a href="login.html"><li>Log in</li></a> 
+                
+            </ul>
+        </div>
+    </nav>
+    <section>
+         <div class="home__container">
+        <h1 data-text="" class="home__title">AI resumeCraft- Your Smartest Step to Landing Interviews</h1>
+       <p data-text="" class="home__description">Harness the power of AI to craft tailored, job-ready resumes in minutes.
+        <span class="home__part">ResumeCraft analyzes job descriptions,optimizes your content with keywords and achievments and formats it professionally helping 
+          you stand out in a competitive job market.Built for developers,creatives and professionals who want results
+        </span>
+       </p>
+       <div class="question">
+       <p class="home__question" data-text="">Do you have a Resume?</p>
+        <ul class="home__question-list">
+            <!-- <li class="home__question-list-item">No worries, we can help you create one.</li> -->
+            <button class="btn-effect-1 btn question__yes" onclick="positive()">Yes</button>
+            <button class="btn-effect-1 btn question__no" onclick="negative()">No</button>
+        </ul>
+        </div>
+      <div class="btns active">
+  <input type="file" id="resumeUpload" accept=".pdf" style="display:none" />
+  <button class="btn-effect-1 btns__upload" onclick="document.getElementById('resumeUpload').click();">Upload Resume</button>
+  <div id="resumeSuggestions" style="margin-top:20px;"></div>
+  <button class="btn-effect-1 btn__upload">Generate Cover Letter</button>
+</div>
+      <div class="submit active ">
+        <p class="submit__text">No worries , we can generate for you one</p>
+        <a href="resume.html">
+          <button class="btn-effect-1 submit__button">Generate Resume</button>
+        </a>
+      </div>
+      
+    </section>
+    
+</body>
+</html>

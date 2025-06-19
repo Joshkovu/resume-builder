@@ -1,0 +1,46 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background: black;
+}
+
+
+h2 {background-image: linear-gradient(
+    60deg in oklch longer hue,
+    oklch(0.9 0.1 360deg),
+    oklch(0.9 0.1 0deg)
+  );
+  background-position: 200% 0%;
+  background-repeat: repeat;
+  background-size: 200% 100%;
+  background-clip: text;
+  color: transparent;
+
+  animation-name: anim-text;
+  animation-duration: 8s;
+
+  animation-timing-function: linear;
+  animation-direction: reverse;
+  animation-iteration-count: infinite;
+
+}
+
+@keyframes anim-text {
+  100% {
+    background-position: -200% 0%;
+  }
+}
+.containerOne{
+    align-items: center;
+    text-align: center;
+    font-size: 3rem;
+}
+.containerTwo{
+    background-color: white;
+    width:400px;
+    height:400px;
+    margin-top: 40px;
+    margin-left: 200px;
+    clip-path: polygon(-20% 10%, 90% 5%, 70% 50%, 0% 50%);
+}

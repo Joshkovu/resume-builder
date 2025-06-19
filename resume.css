@@ -1,0 +1,225 @@
+body{
+    background-color: black;
+}
+
+
+
+
+.submission{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+    padding: 20px;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: sandybrown;
+    font-size: 1.5rem;
+    border-radius: 10px;
+}
+.guidance-stepOne{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   margin-left: 40px;
+    padding: 20px;
+    position: relative;
+    gap:20px;
+   
+}
+.standard {
+    display: flex;
+    flex-direction: column;
+    gap:-1px;
+}
+.guidance-stepTwo{
+    margin-left: 280px;
+}
+.guidance img{
+    width:50px;
+}
+.guidance-stepThree{
+ margin-left: 70px;
+}
+/* .guidance-stepOne__title{
+    margin-bottom: 130px;
+    margin-left: 50px;
+}
+.guidance-stepOne__description{
+    margin-left: 3px;
+    margin-bottom: 20px;
+} */
+.submit button {
+    margin-top: 15px;
+    padding:20px;
+    border-radius: 5px;
+    background-color: rgb(7, 176, 243);
+    border: none;
+    cursor: pointer;
+}
+
+.continue__btn{
+    padding: 20px;
+    width: 200px;
+    
+    border: none;
+    cursor: pointer;
+    
+    font-size: 1.2rem;
+margin-left: 100px;
+    border-radius: 25px;
+    transition: background-color 0.3s ease;
+     width: fit-content;
+  position: relative;
+  left:500px;
+  margin: 2rem;
+  padding: 1rem 1.5rem;
+  color: rgb(207, 248, 255);
+  border: 3px solid transparent;
+  border-radius: 60px;
+  background-color: rgb(6, 69, 73);
+  background-image: linear-gradient(to bottom right, rgb(10,107,115), rgb(2, 10, 14)), linear-gradient(125deg, rgba(255,255,255,0) 45%, rgba(255,255,255,0.6) 50%, rgba(255,255,255,0) 53%);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  background-size: 100%, 200%;
+  background-position: 0px, -250px;
+  animation: 4s border-glint linear backwards infinite;
+  animation-delay: 1s;
+  box-shadow: rgba(0,0,0,0.6) 8px 8px 8px;
+  text-shadow: 0px 0px 4px rgba(255,255,255,0.1);
+  transition: box-shadow 0.25s, text-shaddw 0.25s;
+  overflow: hidden;
+}
+
+.continue__btn:hover {
+  cursor: pointer;
+  background-image: linear-gradient(to bottom right, rgb(24, 77, 177), rgb(24, 77, 177)), linear-gradient(125deg, rgba(255,255,255,0) 45%, rgba(255,255,255,0.6) 50%, rgba(255,255,255,0) 53%);
+  color: rgb(250, 250, 255);
+  box-shadow: rgba(0,0,0,0.7) 5px 5px 5px;
+  text-shadow: 0px 0px 3px rgba(255,255,255,0.7);
+  transition: box-shadow 0.25s, text-shaddw 0.25s;
+}
+
+.continue__btn::after {
+  content: ' ';
+  position: absolute;
+  top: -50%;
+  left: -120%;
+  width: 200%;
+  height: 200%;
+  background-image: linear-gradient(125deg, rgba(255,255,255,0) 30%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 52%);
+  animation: 4s glint linear backwards infinite;
+  animation-delay: -3s;
+}
+
+@keyframes glint {
+  0% { left: -120%; }
+  8% { left: 50%; }
+  100% { left: 50%; }
+}
+
+
+@keyframes border-glint {
+  0% { background-position: 0px, -250px; }
+  25% { background-position: 0px, -200px; }
+  75% { background-position: 0px, 50px; }
+  100% { background-position: 0px, 50px; }
+}
+p,h2 {background-image: linear-gradient(
+    60deg in oklch longer hue,
+    oklch(0.9 0.1 360deg),
+    oklch(0.9 0.1 0deg)
+  );
+  background-position: 200% 0%;
+  background-repeat: repeat;
+  background-size: 200% 100%;
+  background-clip: text;
+  color: transparent;
+
+  animation-name: anim-text;
+  animation-duration: 8s;
+
+  animation-timing-function: linear;
+  animation-direction: reverse;
+  animation-iteration-count: infinite;
+
+}
+h1 {
+  text-transform: uppercase;
+  -webkit-text-stroke: 1px oklch(0.7 0.2 var(--hue) / 0.3);
+  /* text-stroke: 1px oklch(0.7 0.2 var(--hue) / 0.3); */
+  animation-direction: normal;
+}
+@keyframes anim-text {
+  100% {
+    background-position: -200% 0%;
+  }
+}
+
+@media (max-width: 900px) {
+  .guidance {
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    padding: 20px 10px;
+  }
+  .guidance-stepOne,
+  .guidance-stepTwo,
+  .guidance-stepThree {
+    flex-direction: row;
+    width: 90%;
+    margin: 0 auto 16px auto;
+  }
+  .standard {
+    padding-left: 12px;
+  }
+  .continue__btn {
+    width: 80%;
+    font-size: 1.1rem;
+    margin: 24px auto 0 auto;
+    display: block;
+  }
+}
+
+/
+@media (max-width: 600px) {
+  body {
+    padding: 0 2vw;
+  }
+  .submission {
+    font-size: 1.1rem;
+    text-align: center;
+    margin-top: 16px;
+  }
+  .guidance {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+    padding: 10px 0;
+  }
+  .guidance-stepOne,
+  .guidance-stepTwo,
+  .guidance-stepThree {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 16px;
+  }
+  .guidance-stepOne img,
+  .guidance-stepTwo img,
+  .guidance-stepThree img {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 8px;
+  }
+  .standard {
+    padding-left: 0;
+    text-align: center;
+  }
+  .continue__btn {
+    width: 100%;
+    font-size: 1rem;
+    margin: 20px 100px 20px -20px;
+    padding: 12px 0;
+  }
+}

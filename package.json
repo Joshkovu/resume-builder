@@ -1,0 +1,23 @@
+{
+  "name": "resume_builder",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "openai": "^5.3.0"
+  }
+}
+{
+  "prompt": "Using the following information, generate a professional resume in [template #1] format: Name: Jane Doe, Email: jane@example.com, Phone: 123-456-7890, Career Objective: Entry-level software engineer seeking growth opportunities..., Education: BSc in Computer Science, XYZ University, 2022..., Work Experience: Intern at ABC Corp, Assisted with..., Skills: JavaScript, Python, React. Certifications: AWS Certified.",
+  "temperature": 0.3,
+  "max_tokens": 1000
+}
